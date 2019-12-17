@@ -164,7 +164,7 @@ header .top .right .gouwuche:hover {
 }
 
 .banner_x .logo {
-    background: url('../image/logo_top.png') no-repeat center center;
+    background: url('/image/logo_top.png') no-repeat center center;
     width: 50px;
     height: 100px;
 }
@@ -172,7 +172,7 @@ header .top .right .gouwuche:hover {
 .banner_x .ad_top {
     width: 180px;
     height: 100px;
-    background: url('../image/yyymix.gif') no-repeat center center;
+    background: url('/image/yyymix.gif') no-repeat center center;
 }
 
 .banner_x .nav ul li {
@@ -246,7 +246,7 @@ header .top .right .gouwuche:hover {
 .banner_y {
     width: 1226px;
     height: 460px;
-    background: url('../image/banner2.jpg') no-repeat;
+    background: url('/image/banner2.jpg') no-repeat;
 }
 
 .banner_y .nav {
