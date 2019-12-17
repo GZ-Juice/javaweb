@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>后台管理</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- Google fonts - Popppins for copy-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,800">
+    <!-- orion icons-->
+    <link rel="stylesheet" href="css/orionicons.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="img/favicon.png?3">
+    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+</head>
+<body>
+<!-- navbar-->
+<header class="header">
+    <nav class="navbar navbar-expand-lg px-4 py-2 bg-white shadow">
+        <a href="#" class="text-gray-500 mr-4 mr-lg-5 lead">
+            <i class="fas fa-align-left"></i>
+        </a>
+        <a href="forms.html" class="navbar-brand font-weight-bold text-uppercase text-base">荔枝数码商城后台管理系统</a>
+        <ul class="ml-auto d-flex align-items-center list-unstyled mb-0">
+            <li class="nav-item dropdown mr-3" style="color: black; font-size: 18px; font-weight: bold;">管理员：</li>
+            <li class="nav-item dropdown mr-3">
+                <label style="color: black; font-size: 20px; font-weight: bold; margin-top: 5px;" th:text="${WelcomeUser}"></label>
+            </li>
+        </ul>
+    </nav>
+</header>
+<div class="d-flex align-items-stretch">
+    <div id="sidebar" class="sidebar py-3">
+        <div class="text-gray-400 text-uppercase px-3 px-lg-4 py-4 font-weight-bold small headings-font-family">MAIN
+        </div>
+        <ul class="sidebar-menu list-unstyled" style="position: fixed; top: 170px; width: 220px;">
+            <li class="sidebar-list-item"><a href="/sales.html" class="sidebar-link text-muted"><i class="o-sales-up-1 mr-3 text-gray"></i><span>销售统计</span></a></li>
+            <li class="sidebar-list-item"><a href="/forms.html" class="sidebar-link text-muted"><i class="o-survey-1 mr-3 text-gray"></i><span>商品管理</span></a></li>
+            <li class="sidebar-list-item"><a href="/Buyrecords.html" class="sidebar-link text-muted active"><i class="o-table-content-1 mr-3 text-gray"></i><span>订单记录</span></a></li>
+            <li class="sidebar-list-item"><a href="/Viewsrecords.html" class="sidebar-link text-muted"><i class="o-table-content-1 mr-3 text-gray"></i><span>浏览记录</span></a></li>
+            <li class="sidebar-list-item"><a th:href="@{/logout(user=${WelcomeUser})}" class="sidebar-link text-muted"><i class="o-exit-1 mr-3 text-gray"></i><span>退出后台</span></a></li>
+        </ul>
+    </div>
+    <div class="page-holder w-100 d-flex flex-wrap">
+        <div class="container-fluid px-xl-5">
+            <section class="py-5">
+                <div class="row">
+                    <div class="col-lg-6 mb-4">
+                        <div class="card" style="width: 1200px;">
+                            <div class="card-header">
+                                <h6 class="text-uppercase mb-0" style="text-align: center;font-size: 30px">客户购买商品详情</h6>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-striped card-text">
+                                    <thead>
+                                    <tr>
+                                        <th>●</th>
+                                        <th style="text-align: center">用户</th>
+                                        <th style="text-align: center">商品名</th>
+                                        <th style="text-align: center">单价</th>
+                                        <th style="text-align: center">数量</th>
+                                        <th style="text-align: center">总价</th>
+                                        <th style="text-align: center">发货状态</th>
+                                        <th style="text-align: center">发送邮件</th>
+                                        <th style="text-align: center">操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="buy:${buys}">
+                                        <th scope="row">●</th>
+                                        <td th:text="${buy.userName}" style="text-align: center">None</td>
+                                        <td th:text="${buy.goodsName}" style="text-align: center">None</td>
+                                        <td th:text="${buy.price}" style="text-align: center">None</td>
+                                        <td th:text="${buy.num}" style="text-align: center">None</td>
+                                        <td th:text="${buy.total}" style="text-align: center">None</td>
+                                        <td th:text="${buy.state}" style="text-align: center">None</td>
+                                        <td style="text-align: center"><a style="color: cornflowerblue;" th:href="@{/sendGoods(id=${buy.id})}">发货</a></td>
+                                        <td style="text-align: center"><a style="color: red;" th:href="@{/delete_buy(id=${buy.id})}">Delete</a></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <footer class="footer bg-white shadow align-self-end py-3 px-xl-5 w-100">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-left text-primary">
+                        <p class="mb-2 mb-md-0">网络应用开发实验    create by 郭智伦</p>
+                    </div>
+                    <div class="col-md-6 text-center text-md-right text-gray-400">
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+<!-- JavaScript files-->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/popper.js/umd/popper.min.js"> </script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
+<script src="vendor/chart.js/Chart.min.js"></script>
+<script src="js/js.cookie.min.js"></script>
+<script src="js/charts-custom.js"></script>
+<script src="js/front.js"></script>
+<script src="js/jquery-3.3.1.js"></script>
+</body>
+</html>
